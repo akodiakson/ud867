@@ -1,30 +1,25 @@
 package com.udacity.gradle.builditbigger;
 
+import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.akodiakson.jokedisplaylibrary.IntentConstants;
 import com.akodiakson.jokedisplaylibrary.JokeDisplayActivity;
-import com.akodiakson.jokeprovider.IJokeProvider;
-import com.akodiakson.jokeprovider.JokeProvider;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements EndpointAsyncTaskCallbacks{
 
-    private IJokeProvider jokeProvider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        jokeProvider = new JokeProvider();
     }
 
 
@@ -51,11 +46,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void tellJoke(View view){
-        final String joke = jokeProvider.getJoke();
+        new EndpointsAsyncTask(this).execute(new Pair<Context, String>(this, "dummyInput"));
+    }
+
+    @Override
+    public void onJokeReceived(String joke) {
         Intent intent = new Intent(this, JokeDisplayActivity.class);
         intent.putExtra(IntentConstants.EXTRA_JOKE, joke);
         startActivity(intent);
     }
-
-
 }
