@@ -11,12 +11,13 @@ import android.widget.Toast;
 
 import com.akodiakson.jokedisplaylibrary.IntentConstants;
 import com.akodiakson.jokedisplaylibrary.JokeDisplayActivity;
+import com.akodiakson.jokeprovider.IJokeProvider;
 import com.akodiakson.jokeprovider.JokeProvider;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    private JokeProvider jokeProvider;
+    private IJokeProvider jokeProvider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
