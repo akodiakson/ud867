@@ -20,7 +20,6 @@ public class JokeProvider implements IJokeProvider{
     @Override
     public String getJoke() {
         int nextJokeIndex = new Random().nextInt(JOKES.size());
-        System.out.println("nextJokeIndex = " + nextJokeIndex);
         return JOKES.get(nextJokeIndex);
     }
 }
