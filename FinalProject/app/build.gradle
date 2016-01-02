@@ -3,7 +3,6 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
-
     defaultConfig {
         applicationId "com.udacity.gradle.builditbigger"
         minSdkVersion 10
@@ -22,12 +21,21 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
     }
+    productFlavors {
+        paid {
+            applicationId "com.udacity.gradle.builditbigger.paid"
+            versionName "1.0-paid"
+        }
+        free {
+            applicationId "com.udacity.gradle.builditbigger.free"
+            versionName "1.0-free"
+        }
+    }
 }
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-
     // Added for AdMob
     compile project(':jokedisplaylibrary')
     compile project(path: ':backend', configuration: 'android-endpoints')
